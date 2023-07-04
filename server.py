@@ -45,6 +45,7 @@ def golf_analyser():
         os.remove(filename2)
     
     except Exception as e:
+        app.logger.error(e)
         print(e)
 
     return jsonify(links)
