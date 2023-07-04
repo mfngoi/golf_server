@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, abort
 from Golf_Analyser import video_analyzer
 import os
+import logging
 
 app = Flask(__name__)
 
@@ -20,7 +21,6 @@ def golf_analyser():
     print("request recieved")
 
     try:
-
         # retrieve videos from the request using "request" in Flask
         video1 = request.files.getlist("video1")[0]
         video2 = request.files.getlist("video2")[0]
@@ -49,6 +49,10 @@ def golf_analyser():
 
     return jsonify(links)
 
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
 
 if __name__ == "__main__":
     app.run()
