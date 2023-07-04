@@ -6,7 +6,7 @@ class FireBaseManager:
 
     def __init__(self):
         if not firebase_admin._apps:
-            self.bucket_link = 'golfstorage-4abd7.appspot.com'
+            self.bucket_link = 'golf-storage.appspot.com'
             self.cred = credentials.Certificate("firebase_private_key.json")
             firebase_admin.initialize_app(self.cred, {'storageBucket': self.bucket_link})
 
