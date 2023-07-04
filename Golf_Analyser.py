@@ -343,11 +343,14 @@ def video_analyzer(video_1, video_2):
         cv2.imwrite(f'coach_frames_folder/coach_image_{i}.jpg', coach_frames[i])
         cv2.imwrite(f'student_frames_folder/student_image_{i}.jpg', student_frames[i])
 
+
+    print("trying to access firebase storage")
     # upload images from local computer to firebase
     fb_manager = FireBaseManager()
     public_urls = []
     for i in range(len(coach_frames)):
         public_urls.append((fb_manager.upload_file(f'/Coachframes/coach_image_{i}.jpg', f'coach_frames_folder/coach_image_{i}.jpg'),fb_manager.upload_file(f'/Studentframes/student_image_{i}.jpg', f'student_frames_folder/student_image_{i}.jpg')))
+    print("successfully accessed and uploaded firebase storage files")
 
     # delete files and folders after they have been stored online
     if os.path.isdir('coach_frames_folder'):
