@@ -4,17 +4,20 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/')
+def homepage():
+    print("This is your homepage")
+    return "This is your homepage"
 
 @app.route('/hello')
 def hello():
+    print("Greetings!")
     return "Greetings!"
-
-@app.route('/')
-def homepage():
-    return "This is your homepage"
 
 @app.route('/analyser', methods=['GET', 'POST'])
 def golf_analyser():
+
+    print("request recieved")
 
     # retrieve videos from the request using "request" in Flask
     video1 = request.files.getlist("video1")[0]
@@ -33,6 +36,7 @@ def golf_analyser():
 
     # Run the video analyzer method
     links = video_analyzer(filename1, filename2)
+    print(links)
 
     # Once the videos have been analyzed, delete them
     os.remove(filename1)

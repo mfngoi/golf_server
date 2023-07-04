@@ -5,9 +5,10 @@ from firebase_admin import credentials, storage
 class FireBaseManager:
 
     def __init__(self):
-        self.bucket_link = 'golf-storage.appspot.com'
-        self.cred = credentials.Certificate("firebase_private_key.json")
-        firebase_admin.initialize_app(self.cred, {'storageBucket': self.bucket_link})
+        if not firebase_admin._apps:
+            self.bucket_link = 'golf-storage.appspot.com'
+            self.cred = credentials.Certificate("firebase_private_key.json")
+            firebase_admin.initialize_app(self.cred, {'storageBucket': self.bucket_link})
 
     def upload_file(self, destination_path, origin_path):
         # the bucket object in firebase storage

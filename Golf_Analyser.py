@@ -240,7 +240,6 @@ def get_closest_neighbor(selected_frame_angle, indexes_other_video, angles_other
         if(distance < mindistance):
             mindistance = distance
             index_other_frame = index
-            print("min:", mindistance, " index of frame:", index_other_frame)
 
     return index_other_frame, distance
     
@@ -322,9 +321,7 @@ def video_analyzer(video_1, video_2):
     studentmodel = cluster.KMeans(n_clusters=6, random_state=0)
     studentmodel.fit(student_angles)
 
-    print(coachmodel.labels_)
     cluster_coach_info = get_start_end_clusters(coachmodel.labels_)
-    print("Cluster infor", cluster_coach_info)
 
 
     # Array of indexes of frames that are similar to each other
