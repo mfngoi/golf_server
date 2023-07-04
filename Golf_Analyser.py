@@ -350,7 +350,7 @@ def video_analyzer(video_1, video_2):
         fb_manager = FireBaseManager()
         public_urls = []
         for i in range(len(coach_frames)):
-            public_urls.append((fb_manager.upload_file(f'/Coachframes/coach_image_{i}.jpg', f'coach_frames_folder/coach_image_{i}.jpg'),fb_manager.upload_file(f'/Studentframes/student_image_{i}.jpg', f'student_frames_folder/student_image_{i}.jpg')))
+            public_urls.append((fb_manager.upload_file(f'Coachframes/coach_image_{i}.jpg', f'coach_frames_folder/coach_image_{i}.jpg'),fb_manager.upload_file(f'Studentframes/student_image_{i}.jpg', f'student_frames_folder/student_image_{i}.jpg')))
         print("successfully accessed and uploaded firebase storage files")
     except Exception as e:
         print(e)
