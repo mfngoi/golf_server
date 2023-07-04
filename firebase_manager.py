@@ -19,8 +19,9 @@ class FireBaseManager:
 
         # specify which file to upload from local computer
         blob.upload_from_filename(origin_path)
-
         blob.make_public()
+
+        print(blob.public_url)
 
         return blob.public_url
 
