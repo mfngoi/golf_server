@@ -19,28 +19,33 @@ def golf_analyser():
 
     print("request recieved")
 
-    # retrieve videos from the request using "request" in Flask
-    video1 = request.files.getlist("video1")[0]
-    video2 = request.files.getlist("video2")[0]
+    try:
 
-    filename1 = video1.filename
-    filename2 = video2.filename
+        # retrieve videos from the request using "request" in Flask
+        video1 = request.files.getlist("video1")[0]
+        video2 = request.files.getlist("video2")[0]
 
-    # Check if videos from request are valid
-    if filename1 == "" or filename2 == "":
-        abort(400)
+        filename1 = video1.filename
+        filename2 = video2.filename
 
-    # Save the videos from request
-    video1.save(filename1)
-    video2.save(filename2)
+        # Check if videos from request are valid
+        if filename1 == "" or filename2 == "":
+            abort(400)
 
-    # Run the video analyzer method
-    links = video_analyzer(filename1, filename2)
-    print(links)
+        # Save the videos from request
+        video1.save(filename1)
+        video2.save(filename2)
 
-    # Once the videos have been analyzed, delete them
-    os.remove(filename1)
-    os.remove(filename2)
+        # Run the video analyzer method
+        links = video_analyzer(filename1, filename2)
+        print(links)
+
+        # Once the videos have been analyzed, delete them
+        os.remove(filename1)
+        os.remove(filename2)
+    
+    except Exception as e:
+        print(e)
 
     return jsonify(links)
 
