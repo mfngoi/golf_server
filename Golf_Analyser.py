@@ -314,11 +314,11 @@ def video_analyzer(video_1, video_2):
     student_angles = getvideodata(video_2,mp_drawing,mp_pose,pose)
 
     # Create machine learning object for coach (model)
-    coachmodel = cluster.KMeans(n_clusters=6, random_state=0)
+    coachmodel = cluster.KMeans(n_clusters=6, random_state=0, n_init=10)
     coachmodel.fit(coach_angles)
 
     # Create machine learning object for student (model)
-    studentmodel = cluster.KMeans(n_clusters=6, random_state=0)
+    studentmodel = cluster.KMeans(n_clusters=6, random_state=0, n_init=10)
     studentmodel.fit(student_angles)
 
     cluster_coach_info = get_start_end_clusters(coachmodel.labels_)
